@@ -1,0 +1,83 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tw-title">
+    <title id="tw-title">twinop logo: one body forking into a sync and an async lane, stepped in lockstep</title>
+
+    <defs>
+        <linearGradient id="tw-tile" x1="24" y1="24" x2="232" y2="232" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1" stop-opacity="0.16"/>
+            <stop offset="1" stop-color="#22D3EE" stop-opacity="0.16"/>
+        </linearGradient>
+        <linearGradient id="tw-edge" x1="24" y1="24" x2="232" y2="232" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop offset="1" stop-color="#22D3EE"/>
+        </linearGradient>
+
+        <linearGradient id="tw-stem" x1="52" y1="128" x2="104" y2="128" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4F46E5"/>
+            <stop offset="1" stop-color="#6366F1"/>
+        </linearGradient>
+
+        <!-- the async lane runs indigo to purple, the sync lane sky to cyan -->
+        <linearGradient id="tw-async" x1="100" y1="128" x2="204" y2="74" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop offset="1" stop-color="#A855F7"/>
+        </linearGradient>
+        <linearGradient id="tw-sync" x1="100" y1="128" x2="204" y2="182" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0EA5E9"/>
+            <stop offset="1" stop-color="#22D3EE"/>
+        </linearGradient>
+
+        <linearGradient id="tw-rung" x1="128" y1="74" x2="128" y2="182" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#8B5CF6"/>
+            <stop offset="1" stop-color="#22D3EE"/>
+        </linearGradient>
+        <linearGradient id="tw-node" x1="128" y1="102" x2="128" y2="154" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#6366F1"/>
+            <stop offset="1" stop-color="#0EA5E9"/>
+        </linearGradient>
+    </defs>
+
+    <!-- rounded app-icon tile -->
+    <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#tw-tile)"/>
+    <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="55.25" stroke="url(#tw-edge)" stroke-opacity="0.35" stroke-width="1.5"/>
+
+    <!-- each rung ties one op's two thunks together: the same effect, at the same point of the body -->
+    <g stroke="url(#tw-rung)" stroke-opacity="0.35" stroke-width="2.5" stroke-dasharray="4 6" stroke-linecap="round">
+        <line x1="130" y1="101" x2="130" y2="155"/>
+        <line x1="176" y1="74" x2="176" y2="182"/>
+    </g>
+
+    <!-- one body, forking into the two lanes a driver can walk -->
+    <path d="M52 128 H100" stroke="url(#tw-stem)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M100 128 C130 128 130 74 160 74 H204" stroke="url(#tw-async)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M100 128 C130 128 130 182 160 182 H204" stroke="url(#tw-sync)" stroke-width="14" stroke-linecap="round"/>
+
+    <!-- effect stations, mirrored pair by pair -->
+    <g fill="#FFFFFF" fill-opacity="0.92">
+        <circle cx="130" cy="101" r="5.5"/>
+        <circle cx="130" cy="155" r="5.5"/>
+        <circle cx="176" cy="74" r="5.5"/>
+        <circle cx="176" cy="182" r="5.5"/>
+    </g>
+
+    <!-- one step, walked down both lanes on identical timing, so the two cannot drift -->
+    <g>
+        <circle r="13" fill="#FFFFFF" fill-opacity="0.18"/>
+        <circle r="6" fill="#FFFFFF"/>
+        <animateMotion dur="3.4s" repeatCount="indefinite" path="M52 128 H100 C130 128 130 74 160 74 H204"/>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.88;1" dur="3.4s" repeatCount="indefinite"/>
+    </g>
+    <g>
+        <circle r="13" fill="#FFFFFF" fill-opacity="0.18"/>
+        <circle r="6" fill="#FFFFFF"/>
+        <animateMotion dur="3.4s" repeatCount="indefinite" path="M52 128 H100 C130 128 130 182 160 182 H204"/>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.88;1" dur="3.4s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- the shared body on the left, the two public functions it derives on the right -->
+    <circle cx="52" cy="128" r="29" fill="url(#tw-node)" fill-opacity="0.16"/>
+    <circle cx="204" cy="74" r="25" fill="#A855F7" fill-opacity="0.16"/>
+    <circle cx="204" cy="182" r="25" fill="#22D3EE" fill-opacity="0.16"/>
+    <circle cx="52" cy="128" r="17" fill="url(#tw-node)"/>
+    <circle cx="204" cy="74" r="14" fill="#A855F7"/>
+    <circle cx="204" cy="182" r="14" fill="#22D3EE"/>
+</svg>

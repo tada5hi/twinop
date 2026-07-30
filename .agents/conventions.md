@@ -42,6 +42,20 @@ When changing anything in `src/`, also check:
 
 - **`eslint-disable` needs a reason.** Every suppression in this repo has a comment above it explaining what the rule is wrong about (see the deliberate non-`Error` throws and the no-effect body in `run.spec.ts`). A bare disable is not acceptable in a package this small.
 
+## Prose Style
+
+- **Avoid the em dash (`—`).** It reads as machine-written and is awkward to type. Use a colon when what follows explains what precedes it, a comma or semicolon when the clauses are equal, or parentheses for a genuine aside. Recast the sentence if none of those fit.
+
+  ```text
+  bad:   Always delegate with `yield*` — the delegation carries the result type.
+  good:  Always delegate with `yield*`: the delegation carries the result type.
+
+  bad:   Everything that is not I/O — the parse, the error message — exists once.
+  good:  Everything that is not I/O (the parse, the error message) exists once.
+  ```
+
+  Applies to prose everywhere: `README.MD`, these `.agents/` guides, JSDoc, code comments, commit bodies, issues and pull requests. `README.MD` is already clean; the rest of the repo predates the rule and is converted opportunistically when a file is touched for other reasons.
+
 ## Naming Conventions
 
 | Pattern            | Rule                                                                     |
