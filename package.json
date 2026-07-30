@@ -1,0 +1,62 @@
+{
+    "name": "twinop",
+    "version": "0.0.0",
+    "type": "module",
+    "description": "Derive parallel sync + async APIs from one shared generator body.",
+    "author": {
+        "name": "Peter Placzek",
+        "email": "contact@tada5hi.net",
+        "url": "https://github.com/tada5hi"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tada5hi/twinop.git"
+    },
+    "main": "dist/index.mjs",
+    "types": "dist/index.d.mts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "test": "vitest --config test/vitest.config.ts --run",
+        "test:coverage": "vitest --config test/vitest.config.ts --run --coverage",
+        "lint": "eslint",
+        "lint:fix": "npm run lint -- --fix",
+        "prepare": "husky"
+    },
+    "keywords": [
+        "sync",
+        "async",
+        "generator",
+        "dual-api",
+        "typescript",
+        "esm"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@tada5hi/commitlint-config": "^1.3.1",
+        "@tada5hi/eslint-config": "^2.3.0",
+        "@tada5hi/tsconfig": "^0.7.2",
+        "@vitest/coverage-v8": "^4.1.10",
+        "eslint": "^10.3.0",
+        "husky": "^9.1.7",
+        "tsdown": "^0.21.10",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.59.2",
+        "vitest": "^4.1.5"
+    }
+}
