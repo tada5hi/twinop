@@ -23,7 +23,8 @@ npm run lint:fix
 npx tsc --noEmit       # typecheck only (the build does not typecheck)
 ```
 
-- **Node.js**: `>=22.0.0`
+- **Node.js (package runtime)**: `>=22.0.0`
+- **Node.js (development tooling)**: `^24.11.0 || >=26.0.0`; `.nvmrc` selects Node 24.
 - **Package manager**: `npm` (single package, no workspaces)
 - **Build**: `tsdown` → ESM-only, with `.d.mts` declarations and sourcemaps
 - **Test runner**: Vitest 5 (no `globals` — import `describe`/`it`/`expect` explicitly)
