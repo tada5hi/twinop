@@ -25,10 +25,12 @@ describe('op', () => {
         const generator = op(
             () => {
                 calls++;
+
                 return Promise.resolve(1);
             },
             () => {
                 calls++;
+
                 return 1;
             },
         );
@@ -41,6 +43,7 @@ describe('op', () => {
         const generator = op(() => Promise.resolve(1), () => 1);
 
         generator.next();
+
         const step = generator.next(7);
 
         expect(step.done).toEqual(true);

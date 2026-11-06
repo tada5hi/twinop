@@ -26,7 +26,7 @@ npx tsc --noEmit       # typecheck only (the build does not typecheck)
 - **Node.js**: `>=22.0.0`
 - **Package manager**: `npm` (single package, no workspaces)
 - **Build**: `tsdown` → ESM-only, with `.d.mts` declarations and sourcemaps
-- **Test runner**: Vitest 4 (no `globals` — import `describe`/`it`/`expect` explicitly)
+- **Test runner**: Vitest 5 (no `globals` — import `describe`/`it`/`expect` explicitly)
 - **Lint**: ESLint v10 flat config, `@tada5hi/eslint-config`
 - **Release**: release-please (`release-type: node`, single root package)
 

@@ -23,12 +23,15 @@ export async function runTwinAsync<R>(body: TwinBody<R>) : Promise<R> {
     // `strictNullChecks`; the casts keep this correct for consumers compiling
     // without it.
     let step = body.next();
+
     while (!step.done) {
         let result : unknown;
+
         try {
             result = await (step.value as TwinOp).async();
         } catch (e) {
             step = body.throw(e);
+
             continue;
         }
 
@@ -46,12 +49,15 @@ export async function runTwinAsync<R>(body: TwinBody<R>) : Promise<R> {
  */
 export function runTwinSync<R>(body: TwinBody<R>) : R {
     let step = body.next();
+
     while (!step.done) {
         let result : unknown;
+
         try {
             result = (step.value as TwinOp).sync();
         } catch (e) {
             step = body.throw(e);
+
             continue;
         }
 

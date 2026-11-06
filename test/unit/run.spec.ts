@@ -17,10 +17,12 @@ describe('runTwinAsync / runTwinSync', () => {
             return yield* op(
                 () => {
                     seen.push('async');
+
                     return Promise.resolve('a');
                 },
                 () => {
                     seen.push('sync');
+
                     return 's';
                 },
             );
@@ -65,6 +67,7 @@ describe('runTwinAsync / runTwinSync', () => {
         function* body() : TwinBody<number> {
             const a = yield* op(() => Promise.resolve(2), () => 2);
             const b = yield* op(() => Promise.resolve(a * 3), () => a * 3);
+
             return b + 1;
         }
 
@@ -80,6 +83,7 @@ describe('runTwinAsync / runTwinSync', () => {
                 yield* op(
                     () => {
                         order.push(i);
+
                         return Promise.resolve();
                     },
                     () => {
@@ -105,6 +109,7 @@ describe('runTwinAsync / runTwinSync', () => {
             yield* op(
                 () => {
                     asyncCalls++;
+
                     return Promise.resolve();
                 },
                 () => {
@@ -130,6 +135,7 @@ describe('runTwinAsync / runTwinSync', () => {
                             throw new Error('sync boom');
                         },
                     );
+
                     return 'not reached';
                 } catch (e) {
                     return `caught: ${(e as Error).message}`;
@@ -149,6 +155,7 @@ describe('runTwinAsync / runTwinSync', () => {
                         },
                         () => 'unused',
                     );
+
                     return 'not reached';
                 } catch (e) {
                     return (e as Error).message;
@@ -161,6 +168,7 @@ describe('runTwinAsync / runTwinSync', () => {
         it('should keep running the body after a caught effect error', async () => {
             function* body() : TwinBody<string> {
                 let recovered = 'none';
+
                 try {
                     yield* op(
                         () => Promise.reject(new Error('first')),
@@ -171,6 +179,7 @@ describe('runTwinAsync / runTwinSync', () => {
                 } catch {
                     recovered = yield* op(() => Promise.resolve('second'), () => 'second');
                 }
+
                 return recovered;
             }
 
@@ -219,6 +228,7 @@ describe('runTwinAsync / runTwinSync', () => {
         it('should propagate an error the body raises on its own', async () => {
             function* body() : TwinBody<void> {
                 yield* op(() => Promise.resolve(), () => undefined);
+
                 throw new Error('from the body');
             }
 
@@ -272,6 +282,7 @@ describe('runTwinAsync / runTwinSync', () => {
             function* outer() : TwinBody<number> {
                 const a = yield* inner(2);
                 const b = yield* inner(a);
+
                 return b;
             }
 
@@ -292,6 +303,7 @@ describe('runTwinAsync / runTwinSync', () => {
             function* outer() : TwinBody<string> {
                 try {
                     yield* inner();
+
                     return 'not reached';
                 } catch (e) {
                     return `outer caught: ${(e as Error).message}`;
@@ -305,6 +317,7 @@ describe('runTwinAsync / runTwinSync', () => {
 
     it('should not introduce a microtask on the sync side', () => {
         let flushed = false;
+
         void Promise.resolve().then(() => {
             flushed = true;
         });
@@ -323,6 +336,7 @@ describe('runTwinAsync / runTwinSync', () => {
         }
 
         const instance = body();
+
         expect(await runTwinAsync(instance)).toEqual(1);
         // A spent generator reports `done` immediately with `value: undefined`.
         expect(await runTwinAsync(instance)).toBeUndefined();
