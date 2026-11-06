@@ -162,7 +162,7 @@ Both drivers are ~15 lines and structurally identical. If a change touches one, 
 
 - The drivers **never swallow** anything. Every failure either re-enters the body or propagates out.
 - No error type is defined or wrapped by this package. Consumers throw and catch their own.
-- Non-`Error` throws pass through verbatim (pinned by a test).
+- Non-`Error` throws pass through verbatim (tested verbatim).
 - A body is a generator, so it is **single-use**. Driving a spent instance returns `undefined` immediately rather than throwing — call the body function again for a second run.
 
 ## File Structure

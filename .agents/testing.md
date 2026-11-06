@@ -2,7 +2,7 @@
 
 ## Setup
 
-- **Runner**: Vitest 4, v8 coverage provider
+- **Runner**: Vitest 5, v8 coverage provider
 - **Test location**: `test/unit/**/*.{test,spec}.{js,ts}`
 - **Config**: `test/vitest.config.ts`
 - **Prerequisite**: `npm install` only — no build step, no fixtures, no external services
