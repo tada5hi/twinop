@@ -1,5 +1,7 @@
 <!-- NOTE: Keep this file and all corresponding files in the .agents directory updated as the project evolves. When making architectural changes, adding new patterns, or discovering important conventions, update the relevant sections. -->
 
+Use this guide as the entry point. Read linked guides on demand before changing their areas.
+
 # twinop — Agent Guide
 
 `twinop` lets a library ship a parallel **sync + async** API pair (`read` / `readSync`, `locate` / `locateSync`, `run` / `runSync`) without writing the logic twice. The author writes one generator — a **body** — that performs each effect through `op(asyncThunk, syncThunk)`; the two drivers `runTwinAsync` / `runTwinSync` execute the side the public function stands for. Effect errors are re-entered into the body via `Generator.throw`, so `try` / `catch` / `finally` inside a body behaves identically under both drivers. Bodies compose with `yield*`.
